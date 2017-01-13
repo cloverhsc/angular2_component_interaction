@@ -1,7 +1,7 @@
 <p>
-  parent works!
-  {{Parent_var}}
+  parent  {{Parent_var}}
 </p>
-<button (click)="changePvar()">Click</button>
+<hr />
 <app-child1 (ochild1)="getNewChild1($event)"></app-child1>
-<app-child2 [pname]="Parent_var"></app-child2>
+<hr />
+<app-child2 [pname]="get_from_child1" [locChanged]='isChanged'></app-child2>

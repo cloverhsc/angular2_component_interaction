@@ -1,3 +1,4 @@
+import {Mydata} from '../mydata';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -8,9 +9,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class Child1Component implements OnInit {
 
   @Output() ochild1 = new EventEmitter();
-  public child1: string = 'child1 var';
+  public child1 = new Mydata();
+  public isChanged: boolean = false;
+  private count: number = 1;
 
   constructor() {
+      this.child1.firstname = 'clover';
+      this.child1.lastname = 'Hsc';
   }
 
   ngOnInit() {
@@ -21,8 +26,14 @@ export class Child1Component implements OnInit {
   }
 
   changeChildVar() {
-    this.child1 = 'new child 1 vvaarr....';
-    console.log(` >>> ${this.child1} <<< `);
+    if (this.count === 1) {
+        this.child1.lastname = 'Kyo';
+        this.count = 0;
+    } else if (this.count === 0) {
+        this.child1.lastname = 'Hsc';
+        this.count = 1 ;
+    }
+    // this.isChanged = true;
     // 在 click 之後去觸發 child1 的 output event
     this.ochild1.emit(this.child1);
   }
